@@ -1,0 +1,11 @@
+{
+  "trailingComma": "all",
+  "quoteProps": "consistent",
+  "semi": true,
+  "singleQuote": true,
+  "printWidth": 100,
+  "jsxSingleQuote": true,
+  "arrowParens": "always",
+  "proseWrap": "preserve",
+  "htmlWhitespaceSensitivity": "css"
+}

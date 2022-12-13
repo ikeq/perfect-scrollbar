@@ -1,13 +1,7 @@
-import { setScrollingClassInstantly } from './lib/class-names';
+import { setScrollingClassInstantly } from "./lib/class-names";
 
 function createEvent(name) {
-  if (typeof window.CustomEvent === 'function') {
-    return new CustomEvent(name);
-  } else {
-    const evt = document.createEvent('CustomEvent');
-    evt.initCustomEvent(name, false, false, undefined);
-    return evt;
-  }
+  return new CustomEvent(name);
 }
 
 export default function(
@@ -18,26 +12,26 @@ export default function(
   forceFireReachEvent = false
 ) {
   let fields;
-  if (axis === 'top') {
+  if (axis === "top") {
     fields = [
-      'contentHeight',
-      'containerHeight',
-      'scrollTop',
-      'y',
-      'up',
-      'down',
+      "contentHeight",
+      "containerHeight",
+      "scrollTop",
+      "y",
+      "up",
+      "down"
     ];
-  } else if (axis === 'left') {
+  } else if (axis === "left") {
     fields = [
-      'contentWidth',
-      'containerWidth',
-      'scrollLeft',
-      'x',
-      'left',
-      'right',
+      "contentWidth",
+      "containerWidth",
+      "scrollLeft",
+      "x",
+      "left",
+      "right"
     ];
   } else {
-    throw new Error('A proper axis should be provided');
+    throw new Error("A proper axis should be provided");
   }
 
   processScrollDiff(i, diff, fields, useScrollingClass, forceFireReachEvent);
@@ -57,12 +51,12 @@ function processScrollDiff(
 
   // 1 for subpixel rounding
   if (element[scrollTop] < 1) {
-    i.reach[y] = 'start';
+    i.reach[y] = "start";
   }
 
   // 1 for subpixel rounding
   if (element[scrollTop] > i[contentHeight] - i[containerHeight] - 1) {
-    i.reach[y] = 'end';
+    i.reach[y] = "end";
   }
 
   if (diff) {

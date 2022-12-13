@@ -4,33 +4,16 @@ export function div(className) {
   return div;
 }
 
-const elMatches =
-  typeof Element !== 'undefined' &&
-  (Element.prototype.matches ||
-    Element.prototype.webkitMatchesSelector ||
-    Element.prototype.mozMatchesSelector ||
-    Element.prototype.msMatchesSelector);
+const elMatches = Element.prototype.matches;
 
 export function matches(element, query) {
-  if (!elMatches) {
-    throw new Error('No element matching method supported');
-  }
-
   return elMatches.call(element, query);
 }
 
 export function remove(element) {
-  if (element.remove) {
-    element.remove();
-  } else {
-    if (element.parentNode) {
-      element.parentNode.removeChild(element);
-    }
-  }
+  element.remove();
 }
 
 export function queryChildren(element, selector) {
-  return Array.prototype.filter.call(element.children, child =>
-    matches(child, selector)
-  );
+  return Array.prototype.filter.call(element.children, (child) => matches(child, selector));
 }
